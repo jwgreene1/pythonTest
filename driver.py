@@ -4,16 +4,14 @@ import sys
 import time
 import datetime
 import logging
-#import modules.subModule1
-from modules.subModule1 import Class1
-#from modules import *
+import modules.subModule1
 
 # Create the logger
 logger = logging.getLogger('driver')
 
 def initialize():
 
-    print "\t\tIn initialize"
+    print "    In initialize"
 
     # Create the logger
     logger.setLevel(logging.DEBUG)
@@ -27,7 +25,7 @@ def initialize():
     ch.setLevel(logging.ERROR)
 
     # Create formatter and add it to the handlers
-    formatter = logging.Formatter('%(asctime)s - %(name)s - %(message)s')
+    formatter = logging.Formatter("[%(asctime)s] [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)", "%Y-%m-%d %H:%M:%S")
     fh.setFormatter(formatter)
     ch.setFormatter(formatter)
 
@@ -37,24 +35,24 @@ def initialize():
 
     logger.info('Logger initialized')
 
-    print "\t\tLeaving initialize"
+    print "    Leaving initialize"
 
 def main():
 
-    print "\tIn main"
+    print "  In main"
 
     initialize()
 
     logger.info("### Beginning Driver Execution - %s ###" %datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S"))
 
-    print "\tInstantiating Class1"
-    x = Class1()
-    print "\tClass1 Done"
+    print "  Instantiating Class1"
+    x = modules.subModule1.Class1()
+    print "  Class1 Done"
     x.method1()
 
     logger.info("### Ending Driver Execution - %s ###" %datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S"))
 
-    print "\tLeaving main"
+    print "  Leaving main"
 
 if __name__ == "__main__":
     print "Calling main"
