@@ -5,13 +5,12 @@ import time
 import datetime
 import logging
 import modules.subModule1
+import modules.validateData
 
 # Create the logger
 logger = logging.getLogger('driver')
 
 def initialize():
-
-    print "    In initialize"
 
     # Create the logger
     logger.setLevel(logging.DEBUG)
@@ -25,7 +24,8 @@ def initialize():
     ch.setLevel(logging.ERROR)
 
     # Create formatter and add it to the handlers
-    formatter = logging.Formatter("[%(asctime)s] [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)", "%Y-%m-%d %H:%M:%S")
+    formatter = logging.Formatter('[%(asctime)s] [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)',
+                                  '%Y-%m-%d %H:%M:%S')
     fh.setFormatter(formatter)
     ch.setFormatter(formatter)
 
@@ -35,26 +35,24 @@ def initialize():
 
     logger.info('Logger initialized')
 
-    print "    Leaving initialize"
-
 def main():
-
-    print "  In main"
 
     initialize()
 
-    logger.info("### Beginning Driver Execution - %s ###" %datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S"))
+    logger.info('### Beginning Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
 
-    print "  Instantiating Class1"
     x = modules.subModule1.Class1()
-    print "  Class1 Done"
-    x.method1()
 
-    logger.info("### Ending Driver Execution - %s ###" %datetime.datetime.now().strftime("%y-%m-%d %H:%M:%S"))
+    file = 'data/jsonTest.json'
 
-    print "  Leaving main"
+    data = x.readJsonFile(file)
+    #x.printData(data)
+    #x.parseData(data)
 
-if __name__ == "__main__":
-    print "Calling main"
-    main()
-    print "main finished"
+    v = modules.validateData.validate()
+    v.validateData(data)
+
+    logger.info('### Ending Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
+
+if __name__ == '__main__':
+    sys.exit(main())

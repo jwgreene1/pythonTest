@@ -1,0 +1,34 @@
+{
+  "segments": [
+    {
+      "x1": 0,
+      "y1": 0,
+      "z1": 0,
+      "x2": 20,
+      "y2": 3,
+      "z2": 0,
+      "blockType": "STONE",
+      "blockData": 1
+    },
+    {
+      "x1": 0,
+      "y1": 4,
+      "z1": 0,
+      "x2": 20,
+      "y2": 4,
+      "z2": 0,
+      "blockType": "OBSIDIAN",
+      "blockData": 1
+    },
+    {
+      "x1": 0,
+      "y1": 5,
+      "z1": 0,
+      "x2": 20,
+      "y2": 9,
+      "z2": 0,
+      "blockType": "STONE",
+      "blockData": 1
+    }
+  ]
+}
