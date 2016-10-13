@@ -7,7 +7,7 @@
       "x2": 20,
       "y2": 3,
       "z2": 0,
-      "blockType": "STONE",
+      "blockType": 50,
       "blockData": 1
     },
     {
@@ -17,7 +17,7 @@
       "x2": 20,
       "y2": 4,
       "z2": 0,
-      "blockType": "OBSIDIAN",
+      "blockType": 51,
       "blockData": 1
     },
     {
@@ -25,9 +25,9 @@
       "y1": 5,
       "z1": 0,
       "x2": 20,
-      "y2": 9,
+      "y2": -128,
       "z2": 0,
-      "blockType": "STONE",
+      "blockType": 50,
       "blockData": 1
     }
   ]

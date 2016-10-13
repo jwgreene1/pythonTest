@@ -1,22 +1,36 @@
-from voluptuous import Schema, Required, All, Length, Range
+import logging
+from voluptuous import Schema, Required as req, All, Length, Range, error
 
-schema = Schema({
-    Required('segments'): [],
-    Required('x1'): All(int, Range(min=-128, max=128)),
-    Required('y1'): All(int, Range(min=-128, max=128)),
-    Required('z1'): All(int, Range(min=-128, max=128)),
-    Required('x2'): All(int, Range(min=-128, max=128)),
-    Required('y2'): All(int, Range(min=-128, max=128)),
-    Required('z2'): All(int, Range(min=-128, max=128)),
-    Required('blockType'): All(int, Range(min=0, max=128)),
-    Required('blockData'): All(int, Range(min=0, max=128))
+# Create logger
+module_logger = logging.getLogger('driver.modules.validateData')
 
+schemaWallSegment = ({
+    req('x1'): All(int, Range(min=-128, max=128)),
+    req('y1'): All(int, Range(min=-128, max=128)),
+    req('z1'): All(int, Range(min=-128, max=128)),
+    req('x2'): All(int, Range(min=-128, max=128)),
+    req('y2'): All(int, Range(min=-128, max=128)),
+    req('z2'): All(int, Range(min=-128, max=128)),
+    req('blockType'): All(int, Range(min=0, max=128)),
+    req('blockData'): All(int, Range(min=0, max=10))
 })
 
-class validate:
+schemaWall = Schema({
+    req('segments'): [schemaWallSegment]
+})
+
+
+class validateData:
 
     def __init__(self):
-        print("New validate")
+        self.logger = logging.getLogger('driver.modules.validateData.validateData')
+        self.logger.info('  validateData.init')
 
-    def validateData(self, data):
-        schema(data)
+    def validateWall(self, data):
+        try:
+            print('  validating schemaWall: ', schemaWall(data))
+            self.logger.info('  validating schemaWall: ', schemaWall(data))
+
+        except error.MultipleInvalid as e:
+            print('Error validating wall data: ', e)
+            self.logger.error('Error validating wall data: ', e)

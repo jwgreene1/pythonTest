@@ -4,8 +4,8 @@ import sys
 import time
 import datetime
 import logging
-import modules.subModule1
-import modules.validateData
+import modules.util
+from modules.validateData import validateData as vData
 
 # Create the logger
 logger = logging.getLogger('driver')
@@ -41,16 +41,14 @@ def main():
 
     logger.info('### Beginning Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
 
-    x = modules.subModule1.Class1()
+    x = modules.util.fileUtil()
 
     file = 'data/jsonTest.json'
 
     data = x.readJsonFile(file)
-    #x.printData(data)
-    #x.parseData(data)
 
-    v = modules.validateData.validate()
-    v.validateData(data)
+    v = vData()
+    v.validateWall(data)
 
     logger.info('### Ending Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
 
