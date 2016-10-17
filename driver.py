@@ -5,7 +5,7 @@ import time
 import datetime
 import logging
 import modules.util
-from modules.validateData import validateData as vData
+from modules.validateData import validateData
 
 # Create the logger
 logger = logging.getLogger('driver')
@@ -41,13 +41,14 @@ def main():
 
     logger.info('### Beginning Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))
 
-    x = modules.util.fileUtil()
+    # x = modules.util.fileUtil()
 
-    file = 'data/jsonTest.json'
+    file = 'data/testWall.json'
 
-    data = x.readJsonFile(file)
+    # data = x.readJsonFile(file)
+    data = modules.util.readJsonFile(file)
 
-    v = vData()
+    v = validateData()
     v.validateWall(data)
 
     logger.info('### Ending Driver Execution - %s ###' % datetime.datetime.now().strftime('%y-%m-%d %H:%M:%S'))

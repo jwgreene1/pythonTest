@@ -1,5 +1,5 @@
 import logging
-from voluptuous import Schema, Required as req, All, Length, Range, error
+from voluptuous import Schema, Required as req, All, Length, Range, error, Any
 
 # Create logger
 module_logger = logging.getLogger('driver.modules.validateData')
@@ -16,7 +16,8 @@ schemaWallSegment = ({
 })
 
 schemaWall = Schema({
-    req('segments'): [schemaWallSegment]
+    req('segments'): [schemaWallSegment],
+    req('direction'): Any('N', 'S', 'E', 'W')
 })
 
 
